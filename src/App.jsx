@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState } from "react";
+import Formulario from "./componentes/Formulario";
+import Lista from "./componentes/Lista";
+import Filtro from "./componentes/Filtro";;
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [tareas, setTareas] = useState([]);
+  const [categoriaFiltro, setCategoriaFiltro] = useState("0");
+
+  const agregarTarea = (tarea) => setTareas([...tareas, tarea]);
+
+  const eliminarTarea = (id) => setTareas(tareas.filter(t => t.id !== id));
+
+  const cambiarEstado = (id) => {
+    setTareas(tareas.map(t => {
+      if (t.id !== id) return t;
+      let nuevoEstado = "Pendiente";
+      if (t.estado === "Pendiente") nuevoEstado = "En Proceso";
+      else if (t.estado === "En Proceso") nuevoEstado = "Finalizado";
+      return { ...t, estado: nuevoEstado };
+    }));
+  };
+
+  const tareasFiltradas = categoriaFiltro === "0"
+    ? tareas
+    : tareas.filter(t => t.categoria === categoriaFiltro);
+
+  // Extraer categorías únicas para el filtro
+  const categorias = Array.from(new Set(tareas.map(t => t.categoria)));
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Lista de Tareas</h1>
+      <Formulario onAgregar={agregarTarea} />
+      <Filtro categoria={categoriaFiltro} onFiltrar={setCategoriaFiltro} categorias={categorias} />
+      <Lista tareas={tareasFiltradas} onEliminar={eliminarTarea} onCambiarEstado={cambiarEstado} />
+    </div>
+  );
 }
 
-export default App
+export default App;
