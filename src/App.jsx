@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Formulario from "./componentes/Formulario";
 import Lista from "./componentes/Lista";
 import Filtro from "./componentes/Filtro";;
 import './App.css'
 
+const categoriasPredeterminadas = ["colegio", "casa", "trabajo", "otro"];
 
 function App() {
   const [tareas, setTareas] = useState([]);
   const [categoriaFiltro, setCategoriaFiltro] = useState("0");
+
+  // Cargar tareas de localStorage al iniciar
+  useEffect(() => {
+    const guardadas = localStorage.getItem("tareas");
+    if (guardadas) setTareas(JSON.parse(guardadas));
+  }, []);
+
+  // Guardar tareas en localStorage cuando cambian
+ 
 
   const agregarTarea = (tarea) => setTareas([...tareas, tarea]);
 

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-function Formulario({ onAgregar }) {
+function Formulario({ onAgregar }) {}
   const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
   const [categoria, setCategoria] = useState("");
   const [prioridad, setPrioridad] = useState("");
 
@@ -32,11 +31,13 @@ function Formulario({ onAgregar }) {
 
   return (
     <form className="formulario">
-      <input className="opcion" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
-      <input className="opcion" placeholder="Descripción" value={descripcion} onChange={e => setDescripcion(e.target.value)} />
-      <input className="opcion" placeholder="Categoría" value={categoria} onChange={e => setCategoria(e.target.value)} />
+      <select onChange={ (e) => setCategoria(e.target.value)}>
+        <option value="categoria">Categoría</option>
+        <option value="colegio">Colegio</option>
+        <option value="casa">Casa</option>  
+      <select/>
       <select className="opcion" value={prioridad} onChange={e => setPrioridad(e.target.value)}>
-        <option value="">Prioridad</option>
+        <option value="Prioridad">Prioridad</option>
         <option value="Alto">Alto</option>
         <option value="Medio">Medio</option>
         <option value="Bajo">Bajo</option>
