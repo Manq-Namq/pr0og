@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Formulario from "./componentes/Formulario";
-import Lista from "./componentes/Lista";
-import Filtro from "./componentes/Filtro";;
-import './App.css'
-
-const categoriasPredeterminadas = ["colegio", "casa", "trabajo", "otro"];
+import ListaTarea from "./componentes/ListaTarea";
+import FiltrarTarjeta from "./componentes/FiltrarTarjeta";
+import "./index.css";
 
 function App() {
-  const [tareas, setTareas] = useState([]);
-  const [categoriaFiltro, setCategoriaFiltro] = useState("0");
+  const [tareas, setTareas] = useState([]);//arreglo tareas inicialmente vacio
+  const [categoria, setCategoria] = useState("Todas");
 
-  // Cargar tareas de localStorage al iniciar
-  useEffect(() => {
-    const guardadas = localStorage.getItem("tareas");
-    if (guardadas) setTareas(JSON.parse(guardadas));
-  }, []);
+  function agregarTarea(nueva) {
+    setTareas([...tareas, nueva]);
+  }
 
-  // Guardar tareas en localStorage cuando cambian
- 
+  function borrarTarea(id) {
+    
+    setTareas(tareas.filter(t => t.id !== id));//elimina la tarea con el id especificado del arreglo tareas
+  }
 
-  const agregarTarea = (tarea) => setTareas([...tareas, tarea]);
-
-  const eliminarTarea = (id) => setTareas(tareas.filter(t => t.id !== id));
-
-  const cambiarEstado = (id) => {
+  function cambiarEstado(id) {
     setTareas(tareas.map(t => {
-      if (t.id !== id) return t;
-      let nuevoEstado = "Pendiente";
-      if (t.estado === "Pendiente") nuevoEstado = "En Proceso";
-      else if (t.estado === "En Proceso") nuevoEstado = "Finalizado";
-      return { ...t, estado: nuevoEstado };
+      if (t.id === id) {
+        let nuevoEstado;
+        if (t.estado === "Pendiente") nuevoEstado = "En proceso";
+        else if (t.estado === "En proceso") nuevoEstado = "Completada";
+        else nuevoEstado = "Pendiente";
+        return { ...t, estado: nuevoEstado };
+      }
+      return t;//Cambia el estado de la tarea segun su id ciclando entre "Pendiente", etc
     }));
-  };
+  }
 
-  const tareasFiltradas = categoriaFiltro === "0"
+  const prioridadValor = { Alta: 1, Media: 2, Baja: 3 };//asigna valores num para ordenarlas
+
+  const tareasFiltradas = (categoria === "Todas"
     ? tareas
-    : tareas.filter(t => t.categoria === categoriaFiltro);
+    : tareas.filter(t => t.categoria === categoria)
+  ).sort((a, b) => prioridadValor[a.prioridad] - prioridadValor[b.prioridad]);//Filtra tareas por categoria selec y las ordena segun su prioridad
 
-  // Extraer categorías únicas para el filtro
-  const categorias = Array.from(new Set(tareas.map(t => t.categoria)));
-
-  return (
-    <div>
-      <h1>Lista de Tareas</h1>
-      <Formulario onAgregar={agregarTarea} />
-      <Filtro categoria={categoriaFiltro} onFiltrar={setCategoriaFiltro} categorias={categorias} />
-      <Lista tareas={tareasFiltradas} onEliminar={eliminarTarea} onCambiarEstado={cambiarEstado} />
-    </div>
+  return (//3 componentes con las props
+    <>
+     <Formulario guardar={agregarTarea} />
+     <FiltrarTarjeta seleccionar={setCategoria} />
+      <ListaTarea 
+        tareas={tareasFiltradas} 
+        eliminar={borrarTarea} 
+        cambiar={cambiarEstado} 
+      />
+    </>
   );
 }
 

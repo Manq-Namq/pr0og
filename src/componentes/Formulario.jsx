@@ -1,50 +1,48 @@
-import { useState } from "react";
+import { useState } from "react";//impota useState para manejar estados locales
 
-function Formulario({ onAgregar }) {}
-  const [nombre, setNombre] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [prioridad, setPrioridad] = useState("");
+function Formulario({ guardar }) {
+  const [texto, setTexto] = useState("");
+  const [categoria, setCategoria] = useState("Colegio");
+  const [prioridad, setPrioridad] = useState("Alta");
+  function crearTarea() {
+    if (texto.trim() === "") return;
 
-  const limpiar = () => {
-    setNombre("");
-    setDescripcion("");
-    setCategoria("");
-    setPrioridad("");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!nombre || !categoria || !prioridad) {
-      alert("Por favor, completa todos los campos obligatorios: Nombre, Categoría y Nivel de Prioridad.");
-      return;
-    }
-    onAgregar({
+    const nueva = { //Crea un objeto tarea 
       id: Date.now(),
-      nombre,
-      descripcion,
-      categoria,
-      prioridad,
+      titulo: texto,
+      prioridad: prioridad,
+      categoria: categoria,
       estado: "Pendiente"
-    });
-    limpiar();
-  };
+    };
 
-  return (
-    <form className="formulario">
-      <select onChange={ (e) => setCategoria(e.target.value)}>
-        <option value="categoria">Categoría</option>
-        <option value="colegio">Colegio</option>
-        <option value="casa">Casa</option>  
-      <select/>
-      <select className="opcion" value={prioridad} onChange={e => setPrioridad(e.target.value)}>
-        <option value="Prioridad">Prioridad</option>
-        <option value="Alto">Alto</option>
-        <option value="Medio">Medio</option>
-        <option value="Bajo">Bajo</option>
-      </select>
-      <button id="guardar" onClick={handleSubmit}>Guardar</button>
-      <button id="eliminar" type="button" onClick={limpiar}>Limpiar</button>
-    </form>
+    guardar(nueva); //llama la funcion para agregar la tarea al estado principal y limpia el input
+    setTexto("");
+  }
+
+  return (//Renderiza el formulario con input para texto, selec para categoria y select para prioridad y btn para crear tarea
+    <div id="formTarea">
+      <div className="formulario">
+        <input
+          type="text"
+          placeholder="Escribir tarea"
+          value={texto}
+          onChange={(e) => setTexto(e.target.value)}
+        />
+        <p>Categoría: 
+        <select onChange={(e) => setCategoria(e.target.value)}>
+          <option value="Colegio">Colegio</option>
+          <option value="Trabajo">Trabajo</option>
+          <option value="Personal">Personal</option>
+        </select></p>
+        <p>Prioridad: 
+        <select onChange={(e) => setPrioridad(e.target.value)}>
+          <option value="Alta">Alta</option>
+          <option value="Media">Media</option>
+          <option value="Baja">Baja</option>
+        </select></p>
+      </div>
+      <button onClick={crearTarea}>Agregar</button>
+    </div>
   );
 }
 

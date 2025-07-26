@@ -1,20 +1,19 @@
+function TareaTarjeta({ tarea, eliminar, cambiar }) {
+  let clase = "";
+  if (tarea.estado === "Pendiente") clase = "pendiente";
+  else if (tarea.estado === "En proceso") clase = "en-proceso";
+  else clase = "finalizada";
 
-
-function TareaTarjeta({ tarea, onEliminar, onCambiarEstado }) {
   return (
-    <div className="tarea" data-categoria={tarea.categoria} data-prioridad={tarea.prioridad} data-estado={tarea.estado}>
-      <div className="tarjeta">
-        <button className="eliminar-tarea" onClick={() => onEliminar(tarea.id)}>X</button>
-        <h2 className="nomTarea parraf">{tarea.nombre}</h2>
-        <p className="descripcion parraf">{tarea.descripcion || ""}</p>
-        <p className="categoria parraf">{tarea.categoria}</p>
-        <p className="prioridad parraf">{tarea.prioridad}</p>
-        <p className="estado parraf">{tarea.estado}</p>
-        <button className="cambiar-estado" onClick={() => onCambiarEstado(tarea.id)}>Cambiar Estado</button>
-      </div>
-    </div>
+    <li className={clase}>
+      <h4>{tarea.titulo}</h4>
+      <p>Categoría: {tarea.categoria}</p>
+       <p>Prioridad: {tarea.prioridad}</p>
+      <p>Estado: {tarea.estado}</p>
+      <button onClick={() => cambiar(tarea.id)}>Cambiar estado</button>
+      <button onClick={() => eliminar(tarea.id)}>Eliminar</button>
+    </li>
   );
 }
 
 export default TareaTarjeta;
-
