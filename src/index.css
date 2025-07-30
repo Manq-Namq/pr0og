@@ -13,36 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.Formulario, #ListaTareas, .filtro {
-  margin: 20px;
-}
-
-li {
-  list-style: none;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.pendiente {
-  background-color: #ffe0e0;
-}
-
-.en-proceso {
-  background-color: #fff0b3;
-}
-
-.finalizada {
-  background-color: #d4edda;
-}
 a {
   font-weight: 500;
   color: #646cff;
@@ -58,9 +28,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  flex-direction: column;
 }
 
 h1 {
+  text-decoration: none;
   font-size: 3.2em;
   line-height: 1.1;
 }
@@ -84,15 +56,43 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#formTarea {
+  height: 240px;
+  padding: 21px;
+  width: 428PX;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.inputTarea {
+  padding: 0.5em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 1em;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+li {
+  text-decoration: none;
+  background: #f7f7f7;
+  color: black;
+  width: 223px;
+  height: 149px;
+  text-align: center;
+  border-radius: 15px;
+}
+.alta {
+  color: red;
+}
+.media {
+  color: orange;
+}
+.baja {
+  color: green;
 }

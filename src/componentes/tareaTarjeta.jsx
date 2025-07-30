@@ -8,7 +8,7 @@ function TareaTarjeta({ tarea, eliminar, cambiar }) {
     <li className={clase}>
       <h4>{tarea.titulo}</h4>
       <p>Categoría: {tarea.categoria}</p>
-       <p>Prioridad: {tarea.prioridad}</p>
+      <p>{tarea.prioridad}</p>
       <p>Estado: {tarea.estado}</p>
       <button onClick={() => cambiar(tarea.id)}>Cambiar estado</button>
       <button onClick={() => eliminar(tarea.id)}>Eliminar</button>
