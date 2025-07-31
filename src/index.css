@@ -5,13 +5,13 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} 
 
 a {
   font-weight: 500;
@@ -33,7 +33,7 @@ body {
 
 h1 {
   text-decoration: none;
-  font-size: 3.2em;
+  font-size: 5.2em;
   line-height: 1.1;
 }
 
@@ -41,15 +41,16 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
+  color: #333;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #edebeb;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #4851f6;
 }
 button:focus,
 button:focus-visible {
@@ -57,42 +58,91 @@ button:focus-visible {
 }
 
 #formTarea {
-  height: 240px;
-  padding: 21px;
-  width: 428PX;
-  background-color: grey;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
 
+ height: 32vh;
+ padding: 10px;
+ width: 62vw;
+ background-color: #919191;
+ display: flex; 
+ flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
 .inputTarea {
   padding: 0.5em;
   border-radius: 4px;
   border: 1px solid #ccc;
   margin-bottom: 1em;
+  width: 39vw;
+  
+  margin-top:1em ;
+  color: black;
+  font-size: 1em;
+  background-color: #edebeb;
 }
 #root {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
+#listaTareas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
 li {
-  text-decoration: none;
+ list-style: none;
   background: #f7f7f7;
   color: black;
-  width: 223px;
-  height: 149px;
-  text-align: center;
+  width: 25vw;
+  margin: 1px;
   border-radius: 15px;
 }
-.alta {
-  color: red;
+
+p {
+  font-weight: bold;
+  height: 11px;
+  font-size: 17px;
 }
-.media {
-  color: orange;
+.filtro{
+background-color: #919191;
 }
-.baja {
-  color: green;
+.filtro select {
+  width: 250px;
+  font-size: 1em;
+  background-color: #edebeb;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+  color: black;
+}
+.lista-tareas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+.cat{
+  font-size: 20px;
+  margin-left: -39%;
+  margin-top: -10px;
+}
+
+.priori{
+  font-size: 20px;
+  margin-left: -39%;
+  margin-top: -10px;
+}
+ul{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

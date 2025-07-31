@@ -31,18 +31,18 @@ function Formulario({ guardar }) {
         onChange={(e) => setTexto(e.target.value)}
         className="inputTarea"
       />
-      <p>Categoría:
+      <p className="cat">Categoría:
       <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
         <option value="Colegio">Colegio</option>
         <option value="Casa">Casa</option>
         <option value="Trabajo">Trabajo</option>
         <option value="Otro">Otro</option>
       </select></p>
-      <p>Prioridad:
+      <p className="priori">Prioridad:
       <select value={prioridad} onChange={(e) => setPrioridad(e.target.value)}>
-        <option className="alta" value="Alta">Alta</option>
-        <option className="media" value="Media">Media</option>
-        <option className="baja" value="Baja">Baja</option>
+        <option  value="Alta">Alta</option>
+        <option  value="Media">Media</option>
+        <option  value="Baja">Baja</option>
       </select></p>
 
       <button type="submit">Agregar</button>
