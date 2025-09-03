@@ -40,7 +40,7 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0em 22px;
   color: #333;
   font-size: 1em;
   font-weight: 500;
@@ -58,16 +58,11 @@ button:focus-visible {
 }
 
 #formTarea {
-
- height: 32vh;
- padding: 10px;
- width: 62vw;
- background-color: #919191;
- display: flex; 
- flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
+  height: 32vh;
+  background-color: #919191;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .inputTarea {
   padding: 0.5em;
@@ -75,31 +70,30 @@ button:focus-visible {
   border: 1px solid #ccc;
   margin-bottom: 1em;
   width: 39vw;
-  
   margin-top:1em ;
   color: black;
   font-size: 1em;
   background-color: #edebeb;
 }
 #root {
+  width: 62%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
 #listaTareas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  
+  background-color: #919191;
 }
 
 li {
+  text-align: justify;
+  padding: 1em;
  list-style: none;
   background: #f7f7f7;
   color: black;
   width: 25vw;
-  margin: 1px;
+  margin-bottom: 15px;
   border-radius: 15px;
 }
 
@@ -109,25 +103,17 @@ p {
   font-size: 17px;
 }
 .filtro{
-background-color: #919191;
+  background-color: #919191;
 }
 .filtro select {
-  width: 250px;
+  width: 53%;
+  margin-left: 31px;
   font-size: 1em;
   background-color: #edebeb;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-left: 10px;
   color: black;
 }
-.lista-tareas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  padding: 0;
-  list-style: none;
-}
+
 
 .cat{
   font-size: 20px;
@@ -140,9 +126,10 @@ background-color: #919191;
   margin-left: -39%;
   margin-top: -10px;
 }
-ul{
+ul {
+  padding: initial;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
